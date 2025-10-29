@@ -100,7 +100,7 @@ import StatsCards from "../components/StatsCards";
 import { ChevronDown } from "lucide-react";
 import ProjectSummary from "../components/ProjectSummary";
 import ProgressDashboard from "../components/ProgressDashboard";
-import TodayTask from "../components/TodayTask";
+import TodayTask from "../components/Todaytask";
 import ProjectsWorkload from "../components/ProjectsWorkload";
 
 const Homepage: React.FC = () => {
