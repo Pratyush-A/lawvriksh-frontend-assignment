@@ -37,15 +37,16 @@ const TodayTask = () => {
       : tasks.filter((task) => task.category === activeTab);
 
   return (
-    <div className="w-[690px] h-[348px] bg-[#f2eae5] rounded-3xl p-[18px] flex flex-col gap-[10px] [font-family:'Aeonik_Pro',sans-serif] transition-all duration-300">
+    <div className="w-full lg:w-[690px] h-auto lg:h-[348px] bg-[#f2eae5] rounded-3xl p-4 sm:p-[18px] flex flex-col gap-[10px] [font-family:'Aeonik_Pro',sans-serif] transition-all duration-300">
       
-      <h2 className="text-[16px] font-bold text-[#292D32] mb-2">Today task</h2>
-      <div className="flex items-center text-[14px] text-[#292D32] border-b border-gray-300 pb-[6px] mb-1">
+      <h2 className="text-[15px] sm:text-[16px] font-bold text-[#292D32] mb-2">Today task</h2>
+      
+      <div className="flex items-center text-[13px] sm:text-[14px] text-[#292D32] border-b border-gray-300 pb-[6px] mb-1 overflow-x-auto scrollbar-hide">
         {tabs.map((tab) => (
           <div
             key={tab.name}
             onClick={() => setActiveTab(tab.name)}
-            className={`flex items-center mr-6 cursor-pointer transition-all ${
+            className={`flex items-center mr-4 [font-family:'Aeonik_Pro',sans-serif] font-extrabold sm:mr-6 cursor-pointer transition-all whitespace-nowrap ${
               activeTab === tab.name
                 ? "border-b-2 border-[#2B5CE6] font-semibold text-[#2B5CE6]"
                 : "text-[#292D32] hover:text-[#2B5CE6]"
@@ -54,7 +55,7 @@ const TodayTask = () => {
             <span>{tab.name}</span>
             {tab.count && (
               <span
-                className={`ml-1 text-[12px] font-semibold rounded-full px-2 py-[1px] ${
+                className={`ml-1 text-[11px] sm:text-[12px] font-semibold rounded-full px-1.5 sm:px-2 py-[1px] ${
                   activeTab === tab.name ? "text-[#2B5CE6]" : "text-[#2B5CE6]"
                 } bg-[#2B5CE6]/10`}
               >
@@ -66,20 +67,20 @@ const TodayTask = () => {
       </div>
 
       
-      <div className="flex flex-col gap-[8px] text-[14px] text-[#292D32] overflow-y-auto scrollbar-hide">
+      <div className="flex flex-col gap-[8px] text-[13px] sm:text-[14px] [font-family:'Aeonik_Pro',sans-serif] font-extrabold text-[#292D32] overflow-y-auto scrollbar-hide max-h-[220px]">
         {filteredTasks.length > 0 ? (
           filteredTasks.map((task, index) => (
             <div
               key={index}
-              className="flex items-center justify-between pr-2 hover:bg-[#ffffff50] rounded-xl transition-colors duration-200 py-[4px]"
+              className="flex items-start sm:items-center justify-between pr-2 hover:bg-[#ffffff50] rounded-xl transition-colors duration-200 py-[6px] gap-2"
             >
               
-              <div className="flex items-center gap-3">
+              <div className="flex items-start sm:items-center gap-3 flex-1 min-w-0">
                 {task.completed ? (
-                  <div className="w-[18px] h-[18px] rounded-full border-2 border-[#E65F2B] flex items-center justify-center bg-[#E65F2B]">
+                  <div className="w-[16px] h-[16px] sm:w-[18px]  sm:h-[18px] rounded-full border-2 border-[#E65F2B] flex items-center justify-center bg-[#E65F2B] flex-shrink-0 mt-0.5 sm:mt-0">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="w-[10px] h-[10px] text-white"
+                      className="w-[9px] h-[9px] sm:w-[10px] sm:h-[10px] text-white"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -91,23 +92,23 @@ const TodayTask = () => {
                     </svg>
                   </div>
                 ) : (
-                  <div className="w-[18px] h-[18px] rounded-full border-2 border-gray-400" />
+                  <div className="w-[16px] h-[16px] sm:w-[18px] sm:h-[18px] rounded-full border-2 border-gray-400 flex-shrink-0 mt-0.5 sm:mt-0" />
                 )}
-                <span>{task.title}</span>
+                <span className="break-words">{task.title}</span>
               </div>
 
               
               <span
-                className={`px-3 py-[4px] rounded-full text-[13px] font-medium ${getStatusColor(
+                className={`px-2 sm:px-3 py-[3px] sm:py-[4px] rounded-full text-[12px] sm:text-[13px] font-medium ${getStatusColor(
                   task.status
-                )}`}
+                )} whitespace-nowrap flex-shrink-0`}
               >
                 {task.status}
               </span>
             </div>
           ))
         ) : (
-          <div className="text-center text-gray-500 mt-4 text-[13px] italic">
+          <div className="text-center text-gray-500 mt-4 text-[12px] sm:text-[13px] italic">
             No tasks in this category
           </div>
         )}
