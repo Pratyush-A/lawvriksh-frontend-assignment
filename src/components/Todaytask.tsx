@@ -141,7 +141,7 @@ const TodayTask = () => {
     { name: "Links", count: tasks.filter((t) => t.category === "Links").length },
   ];
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: string) => {
     switch (status) {
       case "Approved":
         return "bg-[#1A932E2E] text-[#1A932E]";

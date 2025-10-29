@@ -135,9 +135,9 @@ export default function ProjectsWorkload() {
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
 
   // ✅ Example typed handler (like your handleSliderChange)
-  const handleSliderChange = (val: number): void => {
-    console.log("Slider value:", val);
-  };
+  // const handleSliderChange = (val: number): void => {
+  //   console.log("Slider value:", val);
+  // };
 
   return (
     <div className="relative w-full lg:w-[480px] h-auto lg:h-[348px] bg-[#f2eae5] rounded-3xl p-4 sm:p-[18px] flex flex-col justify-between font-semibold transition-all duration-300">

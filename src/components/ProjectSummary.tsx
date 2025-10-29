@@ -224,7 +224,7 @@ const ProjectSummary = () => {
     },
   ];
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: string) => {
     switch (status) {
       case "Completed":
         return "bg-[#1A932E2E] text-[#1A932E]";
