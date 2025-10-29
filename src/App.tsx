@@ -1,12 +1,10 @@
-
 import React from 'react'
+import Home from "./pages/homepage"
 
-import ProgressDashboard from './components/ProgressDashboard'
 const App = () => {
   return (
-    
     <div>
-      <ProgressDashboard />
+      <Home />
     </div>
   )
 }
