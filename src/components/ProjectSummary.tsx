@@ -239,7 +239,7 @@ const ProjectSummary = () => {
     }
   };
 
-  const getProgressColor = (status) => {
+  const getProgressColor = (status: string) => {
     switch (status) {
       case "Completed":
         return "#22c55e";
