@@ -94,20 +94,19 @@
 
 
 
-
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Navbar from "../components/Navbar";
 import StatsCards from "../components/StatsCards";
 import { ChevronDown } from "lucide-react";
 import ProjectSummary from "../components/ProjectSummary";
 import ProgressDashboard from "../components/ProgressDashboard";
-import TodayTask from "../components/Today task";
+import TodayTask from "../components/TodayTask";
 import ProjectsWorkload from "../components/ProjectsWorkload";
 
-const Homepage = () => {
+const Homepage: React.FC = () => {
   const [selectedRange, setSelectedRange] = useState("Last 30 days");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const options = [
     "Last 7 days",
@@ -117,10 +116,11 @@ const Homepage = () => {
     "Custom Range",
   ];
 
-  // Close dropdown when clicking outside
+  // ✅ Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
         setDropdownOpen(false);
       }
     };
@@ -130,13 +130,13 @@ const Homepage = () => {
 
   return (
     <div className="min-h-screen w-full flex bg-[#ebdfd7] overflow-x-hidden">
-      {/* Main content */}
+      {/* ✅ Main content area */}
       <div className="flex-1 flex flex-col w-full">
         <Navbar />
 
-        {/* Overview + Dropdown Section */}
+        {/* ✅ Overview + Dropdown */}
         <div className="flex flex-col sm:flex-row mt-5 px-4 sm:px-8 justify-between items-start sm:items-center gap-3 sm:gap-0 relative">
-          <h1 className='font-sans font-bold text-lg sm:text-xl md:text-2xl text-[#292D32]'>
+          <h1 className="font-sans font-bold text-lg sm:text-xl md:text-2xl text-[#292D32]">
             Overview
           </h1>
 
@@ -157,9 +157,9 @@ const Homepage = () => {
 
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 w-full sm:w-[180px] font-sans font-semibold bg-white rounded-2xl shadow-lg z-50 overflow-hidden animate-fadeIn">
-                {options.map((option, index) => (
+                {options.map((option) => (
                   <button
-                    key={index}
+                    key={option}
                     onClick={() => {
                       setSelectedRange(option);
                       setDropdownOpen(false);
@@ -178,16 +178,16 @@ const Homepage = () => {
           </div>
         </div>
 
-        {/* Stats Cards */}
+        {/* ✅ Stats Cards */}
         <StatsCards />
 
-        {/* Project Summary + Progress Dashboard */}
+        {/* ✅ Project Summary + Progress Dashboard */}
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 w-full px-4 sm:px-8 mt-6 mb-6">
           <ProjectSummary />
           <ProgressDashboard />
         </div>
 
-        {/* Today Task + Project Workload */}
+        {/* ✅ Today Task + Project Workload */}
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 w-full px-4 sm:px-8 mb-10">
           <TodayTask />
           <ProjectsWorkload />

@@ -105,12 +105,16 @@
 
 
 
-
-
 import { useState } from "react";
 
+interface Person {
+  name: string;
+  value: number;
+  circles: number;
+}
+
 export default function ProjectsWorkload() {
-  const data = [
+  const data: Person[] = [
     { name: "Sam", value: 7, circles: 3 },
     { name: "Meldy", value: 8, circles: 4 },
     { name: "Ken", value: 2, circles: 1 },
@@ -120,15 +124,20 @@ export default function ProjectsWorkload() {
     { name: "Melm", value: 4, circles: 2 },
   ];
 
-  const getColor = (val) => {
+  const getColor = (val: number): string => {
     if (val >= 9) return "bg-[#E65F2B] text-white";
     if (val >= 7) return "bg-black text-white";
     return "bg-black text-white";
   };
 
-  const options = ["Last 3 months", "Last 6 months", "Last year"];
-  const [selectedRange, setSelectedRange] = useState(options[0]);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const options: string[] = ["Last 3 months", "Last 6 months", "Last year"];
+  const [selectedRange, setSelectedRange] = useState<string>(options[0]);
+  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+
+  // ✅ Example typed handler (like your handleSliderChange)
+  const handleSliderChange = (val: number): void => {
+    console.log("Slider value:", val);
+  };
 
   return (
     <div className="relative w-full lg:w-[480px] h-auto lg:h-[348px] bg-[#f2eae5] rounded-3xl p-4 sm:p-[18px] flex flex-col justify-between font-semibold transition-all duration-300">
@@ -165,7 +174,7 @@ export default function ProjectsWorkload() {
 
           {dropdownOpen && (
             <div className="absolute right-0 mt-2 w-[160px] sm:w-[180px] bg-white rounded-2xl shadow-md z-50 overflow-hidden animate-fadeIn">
-              {options.map((option) => (
+              {options.map((option: string) => (
                 <button
                   key={option}
                   onClick={() => {
@@ -189,13 +198,10 @@ export default function ProjectsWorkload() {
       {/* Graph Section */}
       <div className="flex justify-between items-end flex-1 mt-6 px-1 sm:px-2 overflow-x-auto scrollbar-hide">
         <div className="flex justify-between items-end min-w-full gap-2 sm:gap-0">
-          {data.map((person, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center justify-end space-y-1"
-            >
+          {data.map((person: Person, index: number) => (
+            <div key={index} className="flex flex-col items-center justify-end space-y-1">
               <div className="flex flex-col items-center justify-end space-y-1 mb-1">
-                {[...Array(person.circles)].map((_, i) => {
+                {[...Array(person.circles)].map((_, i: number) => {
                   const isTop = i === 0;
                   return (
                     <div
