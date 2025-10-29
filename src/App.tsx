@@ -1,11 +1,21 @@
 import React from 'react'
 import Home from "./pages/homepage"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Sidebar from "./components/sidebar";
+
 
 const App = () => {
   return (
-    <div>
-      <Home />
-    </div>
+    <Router>
+      <div className='flex bg-[#ebdfd7] '>
+        <Sidebar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/dashboard' element={<Home />} />
+          <Route path='/create' element={<div className='flex-1 flex items-center justify-center text-3xl'>Create Page</div>} />
+        </Routes>
+      </div>
+    </Router>
   )
 }
 
